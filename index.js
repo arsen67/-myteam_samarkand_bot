@@ -1,15 +1,25 @@
 const { Telegraf } = require('telegraf');
 const http = require('http');
 
-// Вставьте сюда ваш новый токен (лучше через Environment Variables в Render)
-const bot = new Telegraf(process.env.BOT_TOKEN || '9122941466:AAGZsRaw1_Fioet-seLItAnVfpqUUbkJq_I');
+// Токен берется из защищенных настроек Render
+const bot = new Telegraf(process.env.BOT_TOKEN);
 
-bot.start((ctx) => ctx.reply('Привет! Бот успешно запущен на Node.js!'));
-bot.on('text', (ctx) => ctx.reply(`Вы написали: ${ctx.message.text}`));
+// Команда /start (аналог вашего cmd_start)
+bot.start((ctx) => {
+  const userName = ctx.from.first_name || 'друг';
+  ctx.reply(`Привет, ${userName}! 🎾 Бот теннисной школы успешно запущен и работает 24/7!`);
+});
 
+// Эхо-ответ на любое текстовое сообщение (аналог echo_message)
+bot.on('text', (ctx) => {
+  ctx.reply(`Вы написали: ${ctx.message.text}`);
+});
+
+// Запуск бота
 bot.launch();
+console.log("Бот запущен и ожидает сообщения...");
 
-// Мини-сервер, чтобы Render не выключал бесплатный Web Service из-за отсутствия порта
+// Мини-веб-сервер для Render (чтобы хостинг не выключал приложение)
 http.createServer((req, res) => {
   res.writeHead(200);
   res.end('Bot is running');
