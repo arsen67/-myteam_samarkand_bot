@@ -3,7 +3,7 @@ const http = require('http');
 
 const bot = new Telegraf(process.env.BOT_TOKEN);
 
-const ADMIN_ID = 0; 
+const ADMIN_ID = 8347565487; 
 const waitingForPhone = new Set();
 
 const mainMenu = Markup.keyboard([
@@ -22,7 +22,7 @@ bot.start((ctx) => {
 
 bot.hears('ℹ️ О клубе', (ctx) => {
   ctx.reply(
-    `ℹ️ Мы — профессиональная школа большого тенниса, где каждый игрок выходит на новый уровень. 🎾`,
+    `ℹ️ Мы — профессиональная школа большого тенниса, где каждый игрок выходит на новый уровень.`,
     { parse_mode: 'Markdown' }
   );
 });
@@ -60,7 +60,7 @@ bot.on('contact', async (ctx) => {
 
   await ctx.reply('✅ Спасибо! Ваша заявка принята. Администратор свяжется с вами в ближайшее время!', mainMenu);
 
-  if (ADMIN_ID && ADMIN_ID !== 0) {
+  if (ADMIN_ID) {
     await bot.telegram.sendMessage(
       ADMIN_ID,
       `🔥 **Новая заявка на тренировку!**\n\n` +
@@ -79,7 +79,7 @@ bot.on('text', async (ctx) => {
 
     await ctx.reply('✅ Спасибо! Ваша заявка принята. Администратор свяжется с вами в ближайшее время!', mainMenu);
 
-    if (ADMIN_ID && ADMIN_ID !== 0) {
+    if (ADMIN_ID) {
       await bot.telegram.sendMessage(
         ADMIN_ID,
         `🔥 **Новая заявка на тренировку!**\n\n` +
