@@ -2,7 +2,7 @@ const { Telegraf, Markup } = require('telegraf');
 const http = require('http');
 
 // Лучше хранить токен в переменных окружения (BOT_TOKEN), но оставил ваш как запасной вариант
-const BOT_TOKEN = process.env.BOT_TOKEN || '9122941466:AAFz1rCthnzWNBXSjrBouee3CUSIrat-dsI';
+const BOT_TOKEN = process.env.BOT_TOKEN || '9122941466:AAGRWzejDRVIAhkk_Ug6P67BteVNnh075QY';
 const bot = new Telegraf(BOT_TOKEN);
 
 // ID администратора, куда приходят заявки
